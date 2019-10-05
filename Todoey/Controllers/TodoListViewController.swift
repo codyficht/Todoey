@@ -24,7 +24,7 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+    
     
         
 
@@ -67,6 +67,26 @@ class TodoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        context.delete(itemArray.remove(at: indexPath.row))
+        tableView.deleteRows(at: [indexPath], with: .fade)
+//        context.delete(itemArray.remove(at: indexPath.row))
+        saveItems()
+        
+//        if editingStyle == .delete {
+//            itemArray.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//
+//
+//        }
+//        saveItems()
+    }
+    
+
+    
     
  // MARK: - Add New Items
     

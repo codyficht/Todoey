@@ -82,6 +82,15 @@ class CategoryViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+           
+        context.delete(categories.remove(at: indexPath.row))
+              tableView.deleteRows(at: [indexPath], with: .fade)
+           
+           
+        saveCategories()
+       }
+    
     //MARK: - Data Manipulation Methods
     
     func saveCategories() {
